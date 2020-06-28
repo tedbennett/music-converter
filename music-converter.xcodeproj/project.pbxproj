@@ -3,19 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2979B2FDF091DA4953098B /* Pods_music_converter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1EC8EA32B5E99826B5B6AED /* Pods_music_converter.framework */; };
 		9F7EEC0924A898EE00FDC1B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EEC0824A898EE00FDC1B9 /* AppDelegate.swift */; };
 		9F7EEC0B24A898EE00FDC1B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EEC0A24A898EE00FDC1B9 /* SceneDelegate.swift */; };
 		9F7EEC0D24A898EE00FDC1B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7EEC0C24A898EE00FDC1B9 /* ContentView.swift */; };
 		9F7EEC0F24A898F100FDC1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7EEC0E24A898F100FDC1B9 /* Assets.xcassets */; };
 		9F7EEC1224A898F100FDC1B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7EEC1124A898F100FDC1B9 /* Preview Assets.xcassets */; };
 		9F7EEC1524A898F100FDC1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7EEC1324A898F100FDC1B9 /* LaunchScreen.storyboard */; };
+		9FC68FC024A8A78200ECDDAB /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC68FBF24A8A78200ECDDAB /* PromiseKit */; };
+		9FC68FC324A8A7A300ECDDAB /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC68FC224A8A7A300ECDDAB /* OAuth2 */; };
+		9FC68FC624A8A7C300ECDDAB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC68FC524A8A7C300ECDDAB /* Alamofire */; };
+		9FC68FC824A8ABF900ECDDAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FC68FC724A8ABF900ECDDAB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		93429271A5C520D4FFFFFFD4 /* Pods-music-converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-music-converter.debug.xcconfig"; path = "Target Support Files/Pods-music-converter/Pods-music-converter.debug.xcconfig"; sourceTree = "<group>"; };
 		9F7EEC0524A898EE00FDC1B9 /* music-converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "music-converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7EEC0824A898EE00FDC1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F7EEC0A24A898EE00FDC1B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +30,9 @@
 		9F7EEC1124A898F100FDC1B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9F7EEC1424A898F100FDC1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F7EEC1624A898F100FDC1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FC68FC724A8ABF900ECDDAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B3A05481B8E8CD045FE482A0 /* Pods-music-converter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-music-converter.release.xcconfig"; path = "Target Support Files/Pods-music-converter/Pods-music-converter.release.xcconfig"; sourceTree = "<group>"; };
+		F1EC8EA32B5E99826B5B6AED /* Pods_music_converter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_music_converter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +40,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FC68FC324A8A7A300ECDDAB /* OAuth2 in Frameworks */,
+				9FC68FC624A8A7C300ECDDAB /* Alamofire in Frameworks */,
+				0D2979B2FDF091DA4953098B /* Pods_music_converter.framework in Frameworks */,
+				9FC68FC024A8A78200ECDDAB /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2060E87078617F1213AD0FF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1EC8EA32B5E99826B5B6AED /* Pods_music_converter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2FCFBBF3B182B43C137BB894 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93429271A5C520D4FFFFFFD4 /* Pods-music-converter.debug.xcconfig */,
+				B3A05481B8E8CD045FE482A0 /* Pods-music-converter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9F7EEBFC24A898EE00FDC1B9 = {
 			isa = PBXGroup;
 			children = (
 				9F7EEC0724A898EE00FDC1B9 /* music-converter */,
 				9F7EEC0624A898EE00FDC1B9 /* Products */,
+				2FCFBBF3B182B43C137BB894 /* Pods */,
+				2060E87078617F1213AD0FF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +94,7 @@
 				9F7EEC0E24A898F100FDC1B9 /* Assets.xcassets */,
 				9F7EEC1324A898F100FDC1B9 /* LaunchScreen.storyboard */,
 				9F7EEC1624A898F100FDC1B9 /* Info.plist */,
+				9FC68FC724A8ABF900ECDDAB /* GoogleService-Info.plist */,
 				9F7EEC1024A898F100FDC1B9 /* Preview Content */,
 			);
 			path = "music-converter";
@@ -82,15 +115,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F7EEC1924A898F100FDC1B9 /* Build configuration list for PBXNativeTarget "music-converter" */;
 			buildPhases = (
+				BACC71DACA41248507609646 /* [CP] Check Pods Manifest.lock */,
 				9F7EEC0124A898EE00FDC1B9 /* Sources */,
 				9F7EEC0224A898EE00FDC1B9 /* Frameworks */,
 				9F7EEC0324A898EE00FDC1B9 /* Resources */,
+				A34F7A9B2019B90736BE5DF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "music-converter";
+			packageProductDependencies = (
+				9FC68FBF24A8A78200ECDDAB /* PromiseKit */,
+				9FC68FC224A8A7A300ECDDAB /* OAuth2 */,
+				9FC68FC524A8A7C300ECDDAB /* Alamofire */,
+			);
 			productName = "music-converter";
 			productReference = 9F7EEC0524A898EE00FDC1B9 /* music-converter.app */;
 			productType = "com.apple.product-type.application";
@@ -119,6 +159,11 @@
 				Base,
 			);
 			mainGroup = 9F7EEBFC24A898EE00FDC1B9;
+			packageReferences = (
+				9FC68FBE24A8A78200ECDDAB /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				9FC68FC124A8A7A300ECDDAB /* XCRemoteSwiftPackageReference "OAuth2" */,
+				9FC68FC424A8A7C300ECDDAB /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 9F7EEC0624A898EE00FDC1B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,12 +179,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F7EEC1524A898F100FDC1B9 /* LaunchScreen.storyboard in Resources */,
+				9FC68FC824A8ABF900ECDDAB /* GoogleService-Info.plist in Resources */,
 				9F7EEC1224A898F100FDC1B9 /* Preview Assets.xcassets in Resources */,
 				9F7EEC0F24A898F100FDC1B9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A34F7A9B2019B90736BE5DF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-music-converter/Pods-music-converter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-music-converter/Pods-music-converter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-music-converter/Pods-music-converter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BACC71DACA41248507609646 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-music-converter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F7EEC0124A898EE00FDC1B9 /* Sources */ = {
@@ -282,6 +370,7 @@
 		};
 		9F7EEC1A24A898F100FDC1B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93429271A5C520D4FFFFFFD4 /* Pods-music-converter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +391,7 @@
 		};
 		9F7EEC1B24A898F100FDC1B9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3A05481B8E8CD045FE482A0 /* Pods-music-converter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -342,6 +432,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9FC68FBE24A8A78200ECDDAB /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.13.2;
+			};
+		};
+		9FC68FC124A8A7A300ECDDAB /* XCRemoteSwiftPackageReference "OAuth2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/p2/OAuth2.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+		9FC68FC424A8A7C300ECDDAB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9FC68FBF24A8A78200ECDDAB /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC68FBE24A8A78200ECDDAB /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+		9FC68FC224A8A7A300ECDDAB /* OAuth2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC68FC124A8A7A300ECDDAB /* XCRemoteSwiftPackageReference "OAuth2" */;
+			productName = OAuth2;
+		};
+		9FC68FC524A8A7C300ECDDAB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FC68FC424A8A7C300ECDDAB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F7EEBFD24A898EE00FDC1B9 /* Project object */;
 }
