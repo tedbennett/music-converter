@@ -109,7 +109,10 @@ class SpotifyManager {
                         case .success(let data):
                             do {
                                 let decoded = try JSONDecoder().decode(SpotifySearch.self, from: data!)
-                                seal.fulfill(decoded.tracks?.items == nil ? nil : Track(fromSpotify: decoded.tracks!.items[0]))
+                                if decoded.tracks != nil, !decoded.tracks!.items.isEmpty {
+                                    seal.fulfill(Track(fromSpotify: decoded.tracks!.items[0]))
+                                }
+                                seal.fulfill(nil)
                             } catch {
                                 seal.reject(error)
                         }

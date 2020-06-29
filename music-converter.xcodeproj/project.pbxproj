@@ -14,16 +14,17 @@
 		9F7EEC0F24A898F100FDC1B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7EEC0E24A898F100FDC1B9 /* Assets.xcassets */; };
 		9F7EEC1224A898F100FDC1B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7EEC1124A898F100FDC1B9 /* Preview Assets.xcassets */; };
 		9F7EEC1524A898F100FDC1B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7EEC1324A898F100FDC1B9 /* LaunchScreen.storyboard */; };
+		9F88E44B24AA11CF00758A12 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F88E44A24AA11CF00758A12 /* test.swift */; };
 		9FC68FC024A8A78200ECDDAB /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC68FBF24A8A78200ECDDAB /* PromiseKit */; };
 		9FC68FC324A8A7A300ECDDAB /* OAuth2 in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC68FC224A8A7A300ECDDAB /* OAuth2 */; };
 		9FC68FC624A8A7C300ECDDAB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9FC68FC524A8A7C300ECDDAB /* Alamofire */; };
-		9FC68FC824A8ABF900ECDDAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FC68FC724A8ABF900ECDDAB /* GoogleService-Info.plist */; };
 		9FC68FCA24A8C22900ECDDAB /* SpotifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68FC924A8C22900ECDDAB /* SpotifyManager.swift */; };
 		9FC68FCC24A8D47300ECDDAB /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68FCB24A8D47300ECDDAB /* KeychainWrapper.swift */; };
 		9FC68FCE24A8D47B00ECDDAB /* KeychainWrapperAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68FCD24A8D47B00ECDDAB /* KeychainWrapperAccessibility.swift */; };
 		9FC68FD024A8E11600ECDDAB /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68FCF24A8E11600ECDDAB /* FirebaseManager.swift */; };
 		9FC68FD224A8F10600ECDDAB /* AppleMusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68FD124A8F10600ECDDAB /* AppleMusicManager.swift */; };
 		9FC68FD424A9046C00ECDDAB /* MusicServiceObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC68FD324A9046C00ECDDAB /* MusicServiceObjects.swift */; };
+		9FC68FD824A90F0F00ECDDAB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FC68FD724A90F0F00ECDDAB /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,13 +37,14 @@
 		9F7EEC1124A898F100FDC1B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9F7EEC1424A898F100FDC1B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F7EEC1624A898F100FDC1B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9FC68FC724A8ABF900ECDDAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9F88E44A24AA11CF00758A12 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		9FC68FC924A8C22900ECDDAB /* SpotifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyManager.swift; sourceTree = "<group>"; };
 		9FC68FCB24A8D47300ECDDAB /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		9FC68FCD24A8D47B00ECDDAB /* KeychainWrapperAccessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapperAccessibility.swift; sourceTree = "<group>"; };
 		9FC68FCF24A8E11600ECDDAB /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		9FC68FD124A8F10600ECDDAB /* AppleMusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicManager.swift; sourceTree = "<group>"; };
 		9FC68FD324A9046C00ECDDAB /* MusicServiceObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicServiceObjects.swift; sourceTree = "<group>"; };
+		9FC68FD724A90F0F00ECDDAB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B3A05481B8E8CD045FE482A0 /* Pods-music-converter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-music-converter.release.xcconfig"; path = "Target Support Files/Pods-music-converter/Pods-music-converter.release.xcconfig"; sourceTree = "<group>"; };
 		F1EC8EA32B5E99826B5B6AED /* Pods_music_converter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_music_converter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -100,9 +102,11 @@
 		9F7EEC0724A898EE00FDC1B9 /* music-converter */ = {
 			isa = PBXGroup;
 			children = (
+				9F88E44A24AA11CF00758A12 /* test.swift */,
 				9FC68FD324A9046C00ECDDAB /* MusicServiceObjects.swift */,
 				9FC68FD124A8F10600ECDDAB /* AppleMusicManager.swift */,
 				9FC68FCF24A8E11600ECDDAB /* FirebaseManager.swift */,
+				9FC68FD724A90F0F00ECDDAB /* GoogleService-Info.plist */,
 				9FC68FC924A8C22900ECDDAB /* SpotifyManager.swift */,
 				9FC68FCB24A8D47300ECDDAB /* KeychainWrapper.swift */,
 				9FC68FCD24A8D47B00ECDDAB /* KeychainWrapperAccessibility.swift */,
@@ -112,7 +116,6 @@
 				9F7EEC0E24A898F100FDC1B9 /* Assets.xcassets */,
 				9F7EEC1324A898F100FDC1B9 /* LaunchScreen.storyboard */,
 				9F7EEC1624A898F100FDC1B9 /* Info.plist */,
-				9FC68FC724A8ABF900ECDDAB /* GoogleService-Info.plist */,
 				9F7EEC1024A898F100FDC1B9 /* Preview Content */,
 			);
 			path = "music-converter";
@@ -197,7 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F7EEC1524A898F100FDC1B9 /* LaunchScreen.storyboard in Resources */,
-				9FC68FC824A8ABF900ECDDAB /* GoogleService-Info.plist in Resources */,
+				9FC68FD824A90F0F00ECDDAB /* GoogleService-Info.plist in Resources */,
 				9F7EEC1224A898F100FDC1B9 /* Preview Assets.xcassets in Resources */,
 				9F7EEC0F24A898F100FDC1B9 /* Assets.xcassets in Resources */,
 			);
@@ -255,6 +258,7 @@
 				9FC68FD424A9046C00ECDDAB /* MusicServiceObjects.swift in Sources */,
 				9FC68FD224A8F10600ECDDAB /* AppleMusicManager.swift in Sources */,
 				9FC68FCA24A8C22900ECDDAB /* SpotifyManager.swift in Sources */,
+				9F88E44B24AA11CF00758A12 /* test.swift in Sources */,
 				9F7EEC0924A898EE00FDC1B9 /* AppDelegate.swift in Sources */,
 				9FC68FD024A8E11600ECDDAB /* FirebaseManager.swift in Sources */,
 				9F7EEC0B24A898EE00FDC1B9 /* SceneDelegate.swift in Sources */,

@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Track {
+class Track: ObservableObject {
     var id: String
     var name: String
     var artists: [String]
@@ -16,6 +17,17 @@ struct Track {
     var url: URL?
     var imageUrl: URL?
     var isrcId: String?
+    @Published var image: UIImage?
+    
+    init(id: String, name: String, artists: [String], albumName: String, url: URL?, imageUrl: URL?, isrcId: String?) {
+        self.id = id
+        self.name = name
+        self.artists = artists
+        self.albumName = albumName
+        self.url = url
+        self.imageUrl = imageUrl
+        self.isrcId = isrcId
+    }
 }
 
 struct SpotifySimpleAlbum: Decodable {
@@ -131,7 +143,7 @@ struct SpotifyTrack: Decodable {
 }
 
 extension Track {
-    init(fromSpotify response: SpotifyTrack) {
+    convenience init(fromSpotify response: SpotifyTrack) {
         let id = response.id ?? UUID().uuidString
         let name = response.name
         let url = response.externalUrls.spotify
@@ -347,7 +359,7 @@ struct ArtistRelationship: AppleMusicRelationship {
 }
 
 extension Track {
-    init(fromAppleMusic response: AppleMusicSong) {
+    convenience init(fromAppleMusic response: AppleMusicSong) {
         let id = response.id
         let name = response.attributes!.name
         let url = response.attributes!.url

@@ -32,6 +32,9 @@ class AppleMusicManager {
         }
         
     }
+    struct BackgroundError: Error {
+        var errorDescription = "App in background"
+    }
     
     func fetchIsrcId(id: String) -> Promise<Track> {
         return Promise { seal in
