@@ -71,7 +71,6 @@ class AppleMusicManager {
             AF.request(url, parameters: parameters, headers: headers)
                 .validate()
                 .response { response in
-                    let json = try? JSONSerialization.jsonObject(with: response.data!, options: []) as? [String: Any]
                     switch response.result {
                         case .success(let data):
                             do {

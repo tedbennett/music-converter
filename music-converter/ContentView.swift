@@ -16,101 +16,86 @@ struct ContentView: View {
     @State private var status: Status = .InProgress
     @State private var cachedClipboardString: String?
     @State private var statusText: String?
+    @State private var trackDataStatus: TrackDataStatus = .BothInBackground
     
+    // Cache track data before transition
     @State private var albumArt: UIImage?
     @State private var trackName: String?
     @State private var artistName: String?
+    @State private var albumName: String?
     @State private var trackIsrcId: String?
     @State private var url: URL?
     
     
-    // Animation helpers
-    @State private var fadeOut = false
-    @State private var trackAvailable = false
+    @State private var trackDataA : TrackData?
+    @State private var trackDataB : TrackData?
+    
+    enum TrackDataStatus {
+        case AInForeground
+        case AInBackground
+        case BothInBackground
+    }
     
     var body: some View {
-        NavigationView {
+        GeometryReader { geometry in
             VStack {
                 if self.status == .InProgress {
-                    SpinnerView()
+                    ZStack {
+                        SpinnerView()
+                        Image("icon").resizable().frame(width: 60, height: 50)
+                    }
                 }
-                if self.trackAvailable {
-                    VStack() {
-                        Image(uiImage: self.albumArt!).resizable()
-                            .cornerRadius(10)
-                            .frame(width: 300, height: 300, alignment: .center)
-                            .padding(20)
-                            .opacity(self.fadeOut ? 0 : 1)
-                            .animation(.easeInOut(duration: 1.0))
-                        HStack {
-                            Text(self.trackName!).bold()
-                                .padding(10)
-                                .font(.largeTitle)
-                                .opacity(self.fadeOut ? 0 : 1)
-                                .animation(Animation.easeInOut(duration: 1.0).delay(0.5))
-                                
-                            Spacer()
-                        }
-                        HStack {
-                        Text(self.artistName!).padding(10)
-                            .font(.headline)
-                            .opacity(self.fadeOut ? 0 : 1)
-                            .animation(Animation.easeInOut(duration: 1.0).delay(1.0))
-                            Spacer()
-                        }
-                        //if self.url != nil {
-                        HStack {
-                            Button(action: {
-                                UIApplication.shared.open(self.url!)
-                            }, label: {
-                                if self.status == .TargetAppleMusic {
-                                    Text("Open In Apple Music").font(.headline)
-                                        .padding(20)
-                                }
-                                if self.status == .TargetSpotify {
-                                    Text("Open In Spotify").font(.headline)
-                                        .padding(20)
-                                }
-        
-                            }).opacity(self.fadeOut ? 0 : 1)
-                                .animation(Animation.easeInOut(duration: 1.0).delay(1.5))
-                            Spacer()
-                        }
-                    }.frame(width: 300)
-                        //.transition(.slide)
+                if (self.status == .TargetAppleMusic || self.status == .TargetSpotify) && self.trackDataStatus != .BothInBackground {
+                    if self.trackDataStatus == .AInForeground {
+                        VStack {
+                            Spacer().frame(width: 0, height: 0)
+                            TrackDetails(track: self.$trackDataA, status: self.$status)
+                        }.frame(width:  geometry.size.width).transition(AnyTransition.slide.combined(with: AnyTransition.opacity.animation(.easeInOut(duration: 0.8))))
+                    }
+                    else {
+                        VStack {
+                            TrackDetails(track: self.$trackDataB, status: self.$status)
+                        }.frame(width:  geometry.size.width).transition(AnyTransition.slide.combined(with: AnyTransition.opacity.animation(.easeInOut(duration: 0.8))))
+                    }
                 }
                 
                 if self.status == .InvalidLink {
                     VStack {
-                        Text("Can't find music URL in your clipboard").padding(10)
-                        Text("Copy an 'open.spotify.com' or 'music.apple.com song' link").font(.subheadline)
+                        Text("Oops!").font(.largeTitle).padding(20)
+                        Text("SwitchIt can't find a music link in your clipboard").font(.headline).padding(20)
                             .multilineTextAlignment(.center)
-                    }.padding(15)
-                        .animation(Animation.easeInOut(duration: 1.0))
-                        .transition(.opacity)
+                        Text("Copy an 'open.spotify.com' or 'music.apple.com' song link").font(.subheadline).foregroundColor(.gray)
+                            .multilineTextAlignment(.center)
+                    }.frame(width:350)
                     
                 }
-            }.navigationBarTitle("Title")
+            }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-            self.statusText = "Logging in to AM"
+            if self.cachedClipboardString == UIPasteboard.general.string {
+                return
+            }
             AppleMusicManager.shared.authorize().then { () -> Promise<Void> in
-                self.statusText = "Logging in to Spotify"
-                return SpotifyManager.shared.authorize()
-            }.done { success in
-                self.statusText = "Checking clipboard"
-                if self.cachedClipboardString == UIPasteboard.general.string {
-                    return
+                SpotifyManager.shared.authorize()
+            }.then { () -> Promise<Void> in
+                
+                self.albumArt = nil
+                self.artistName = nil
+                self.albumName = nil
+                self.trackName = nil
+                self.trackIsrcId = nil
+                self.url = nil
+                
+                return self.convertClipboardLink(UIPasteboard.general.string)
+            }.done {
+                if self.trackDataStatus != .AInForeground {
+                    self.trackDataA = TrackData(albumArt: self.albumArt, trackName: self.trackName!, artistName: self.artistName!, albumName: self.albumName!, url: self.url!)
+                    self.trackDataStatus = .AInForeground
                 } else {
-                    self.fadeOut = true
-                    self.trackAvailable = false
-                    self.albumArt = nil
-                    self.artistName = nil
-                    self.trackName = nil
-                    self.trackIsrcId = nil
-                    self.url = nil
+                    self.trackDataB = TrackData(albumArt: self.albumArt, trackName: self.trackName!, artistName: self.artistName!, albumName: self.albumName!, url: self.url!)
+                    self.trackDataStatus = .AInBackground
                 }
-                self.convertClipboardLink(UIPasteboard.general.string)
+                
             }.catch { error in
                 print(error)
             }
@@ -118,25 +103,25 @@ struct ContentView: View {
     }
     
     
-    private func convertClipboardLink(_ link: String?) {
+    private func convertClipboardLink(_ link: String?) -> Promise<Void> {
         cachedClipboardString = link
         let linkType = checkLinkValid(link)
         switch linkType {
             case .SpotifyTrack:
                 status = .TargetAppleMusic
-                getTrackFromAppleMusic(URL(string: link!)!)
+                return getTrackFromAppleMusic(URL(string: link!)!)
             case .SpotifyAlbum:
                 status = .TargetAppleMusic
-                return //getAlbumFromAppleMusic(link)
+                return Promise { $0.reject(LinkMissingError())} //getAlbumFromAppleMusic(link)
             case .AppleMusicTrack:
                 status = .TargetSpotify
-                getTrackFromSpotify(URL(string: link!)!)
+                return getTrackFromSpotify(URL(string: link!)!)
             case .AppleMusicAlbum:
                 status = .TargetSpotify
-                return //getAlbumFromSpotify(link)
+                return Promise { $0.reject(LinkMissingError())}//getAlbumFromSpotify(link)
             case .Invalid:
                 status = .InvalidLink
-                return
+                return Promise { $0.reject(LinkMissingError()) }
         }
     }
     
@@ -165,20 +150,20 @@ struct ContentView: View {
         return .Invalid
     }
     
-    private func getTrackFromSpotify(_ url: URL) {
+    private func getTrackFromSpotify(_ url: URL) -> Promise<Void> {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         let id = components!.queryItems!.first(where: { $0.name == "i"})!.value!
         
-        AppleMusicManager.shared.fetchIsrcId(id: id)
+        return AppleMusicManager.shared.fetchIsrcId(id: id)
             .then { (track: Track) -> Promise<UIImage?> in
                 self.trackName = track.name
                 self.artistName = track.artists.isEmpty ? "Unknown Artist" : track.artists[0]
+                self.albumName = track.albumName
                 self.trackIsrcId = track.isrcId
                 return self.downloadImage(from: track.imageUrl)
         }
         .then { (image: UIImage?) -> Promise<Track?> in
             self.albumArt = image
-            self.trackAvailable = true
             if self.trackIsrcId == nil {
                 return Promise { $0.reject(IsrcMissingError()) }
             }
@@ -191,28 +176,27 @@ struct ContentView: View {
             self.url = track!.url
             return Promise{$0.fulfill([])}
         }
-        .done { (tracks: [Track]) in
+        .then { (tracks: [Track]) -> Promise<Void> in
             if !tracks.isEmpty {
                 for track in tracks {
                     if track.name == self.trackName! && track.artists[0] == self.artistName! {
                         self.url = tracks[0].url
-                        return
+                        return Promise { $0.fulfill(()) }
                     }
                 }
             }
-            self.fadeOut = false
-        }.catch { error in
-            print(error)
+            return Promise { $0.fulfill(()) }
         }
     }
     
-    private func getTrackFromAppleMusic(_ url: URL) {
+    private func getTrackFromAppleMusic(_ url: URL) -> Promise<Void> {
         firstly {
             SpotifyManager.shared.fetchIsrcId(id: url.lastPathComponent)
         }
         .then { (track: Track) -> Promise<UIImage?> in
             self.trackName = track.name
             self.artistName = track.artists.isEmpty ? "Unknown Artist" : track.artists[0]
+            self.albumName = track.albumName
             self.trackIsrcId = track.isrcId
             return self.downloadImage(from: track.imageUrl)
         }
@@ -230,21 +214,17 @@ struct ContentView: View {
             self.url = track!.url
             return Promise{$0.fulfill([])}
         }
-        .done { (tracks: [Track]) in
+        .then { (tracks: [Track]) -> Promise<Void> in
             if !tracks.isEmpty {
                 for track in tracks {
                     if track.name == self.trackName! && track.artists[0] == self.artistName! {
                         self.url = tracks[0].url
-                        self.statusText = "Done"
-                        return
+                        return Promise { $0.fulfill(()) }
                     }
                 }
             }
-            self.fadeOut = false
             self.statusText = "Done"
-            return
-        }.catch { error in
-            print(error)
+            return Promise { $0.fulfill(()) }
         }
     }
     
@@ -276,15 +256,12 @@ struct ContentView: View {
         case Invalid
     }
     
-    private enum Status {
-        case InProgress
-        case InvalidLink
-        case TargetAppleMusic
-        case TargetSpotify
-    }
-    
     struct IsrcMissingError: Error {
         var errorDescription = "Isrc code missing"
+    }
+    
+    struct LinkMissingError: Error {
+        var errorDescription = "link missing"
     }
     
 }
@@ -295,68 +272,68 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+enum Status {
+    case InProgress
+    case InvalidLink
+    case TargetAppleMusic
+    case TargetSpotify
+}
+
 struct TrackDetails: View {
+    @Binding var track: TrackData?
+    @Binding var status: Status
     
-    @Binding var albumArt: UIImage?
-    @Binding var trackName: String?
-    @Binding var artistName: String?
-    @Binding var url: URL?
+    mutating func setArtwork(image: UIImage?) {
+        if image != nil {
+            self.track!.albumArt = image
+        }
+        else {
+            self.track!.albumArt = UIImage(systemName: "camera")
+        }
+    }
     
     var body: some View {
-        VStack() {
-            Image(uiImage: self.albumArt!).resizable()
+        VStack(alignment: .leading) {
+            Image(uiImage: self.track!.albumArt!).resizable()
                 .cornerRadius(10)
-                .frame(width: 300, height: 300, alignment: .center)
-                .padding(20)
-                .animation(.easeInOut(duration: 1.0))
-//            HStack {
-//                Text(self.trackName!).bold()
-//                    .padding(10)
-//                    .font(.largeTitle)
-//
-//
-//                Spacer()
-//            }.animation(Animation.easeInOut(duration: 1.0).delay(0.5))
-//            HStack {
-//                Text(self.artistName!).padding(10)
-//                    .font(.headline)
-//
-//                Spacer()
-//            }.animation(Animation.easeInOut(duration: 1.0).delay(1.0))
-//            //if self.url != nil {
-//            HStack {
-//                Button(action: {
-//                    UIApplication.shared.open(self.url!)
-//                }, label: {
-//                    if self.status == .TargetAppleMusic {
-//                        Text("Open In Apple Music").font(.headline)
-//                            .padding(20)
-//                    }
-//                    if self.status == .TargetSpotify {
-//                        Text("Open In Spotify").font(.headline)
-//                            .padding(20)
-//                    }
-//
-//                }).opacity(self.fadeOut ? 0 : 1)
-//                    .animation(Animation.easeInOut(duration: 1.0).delay(1.5))
-//                Spacer()
-//            }
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .aspectRatio(1.0, contentMode: .fit)
+                .animation(.easeInOut(duration: 0.7))
+            
+            Text(self.track!.trackName).bold()
+                .padding(10)
+                .font(.largeTitle)
+                .animation(Animation.easeInOut(duration: 0.7).delay(0.3))
+            
+            Text(self.track!.albumName).padding(10)
+                .font(.headline)
+                .animation(Animation.easeInOut(duration: 0.7).delay(0.6))
+            
+            Text(self.track!.artistName).padding(10)
+                .font(.headline)
+                .animation(Animation.easeInOut(duration: 0.7).delay(0.9)).padding(.bottom, 10)
+            
+            Button(action: {
+                UIApplication.shared.open(self.track!.url)
+            }, label: {
+                if self.status == .TargetAppleMusic {
+                    Text("Open In Apple Music").font(Font(UIFont(name: "HelveticaNeue-Bold", size: 20)!)).frame(minWidth: 0, maxWidth: .infinity)
+                    
+                }
+                if self.status == .TargetSpotify {
+                    Text("Open In Spotify").font(Font(UIFont(name: "HelveticaNeue-Bold", size: 20)!)).frame(minWidth: 0, maxWidth: .infinity)
+                    
+                }
+                
+            }).padding(20)
+                .foregroundColor(Color(.systemBackground))
+                .background(Color(.label))
+                .cornerRadius(20)
+                .animation(Animation.easeInOut(duration: 0.7).delay(1.2))
+            
         }.frame(width: 300)
     }
 }
-
-//struct InvalidLink: View {
-//    var body: some View {
-//
-//
-//    }
-//}
-
-
-
-
-
-
 
 
 struct SpinnerView: View {
@@ -396,14 +373,6 @@ struct TrackData {
     var albumArt: UIImage?
     var trackName: String
     var artistName: String
+    var albumName: String
     var url: URL
-    
-    mutating func setArtwork(image: UIImage?) {
-        if image != nil {
-            self.albumArt = image
-        }
-        else {
-            self.albumArt = UIImage(systemName: "ellipsis")
-        }
-    }
 }
