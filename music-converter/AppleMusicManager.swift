@@ -26,7 +26,11 @@ class AppleMusicManager {
     }
     
     private func getToken() -> Promise<Void> {
-        FirebaseManager.shared.getAppleMusicToken().then { (token: String) -> Promise<Void> in
+        firstly {
+            FirebaseManager.shared.signInAnonymously()
+        }.then { _ in
+            FirebaseManager.shared.getAppleMusicToken()
+        }.then { (token: String) -> Promise<Void> in
             self.developerToken = token
             return Promise {$0.fulfill(())}
         }
