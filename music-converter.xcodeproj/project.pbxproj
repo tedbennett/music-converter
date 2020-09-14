@@ -28,7 +28,7 @@
 
 /* Begin PBXFileReference section */
 		93429271A5C520D4FFFFFFD4 /* Pods-music-converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-music-converter.debug.xcconfig"; path = "Target Support Files/Pods-music-converter/Pods-music-converter.debug.xcconfig"; sourceTree = "<group>"; };
-		9F7EEC0524A898EE00FDC1B9 /* music-converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "music-converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F7EEC0524A898EE00FDC1B9 /* SwitchIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F7EEC0824A898EE00FDC1B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F7EEC0A24A898EE00FDC1B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9F7EEC0C24A898EE00FDC1B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 		9F7EEC0624A898EE00FDC1B9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9F7EEC0524A898EE00FDC1B9 /* music-converter.app */,
+				9F7EEC0524A898EE00FDC1B9 /* SwitchIt.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,9 +102,9 @@
 			children = (
 				9FC68FD324A9046C00ECDDAB /* MusicServiceObjects.swift */,
 				9FC68FD124A8F10600ECDDAB /* AppleMusicManager.swift */,
+				9FC68FC924A8C22900ECDDAB /* SpotifyManager.swift */,
 				9FC68FCF24A8E11600ECDDAB /* FirebaseManager.swift */,
 				9FC68FD724A90F0F00ECDDAB /* GoogleService-Info.plist */,
-				9FC68FC924A8C22900ECDDAB /* SpotifyManager.swift */,
 				9FC68FCB24A8D47300ECDDAB /* KeychainWrapper.swift */,
 				9FC68FCD24A8D47B00ECDDAB /* KeychainWrapperAccessibility.swift */,
 				9F7EEC0824A898EE00FDC1B9 /* AppDelegate.swift */,
@@ -150,7 +150,7 @@
 				9FC68FC524A8A7C300ECDDAB /* Alamofire */,
 			);
 			productName = "music-converter";
-			productReference = 9F7EEC0524A898EE00FDC1B9 /* music-converter.app */;
+			productReference = 9F7EEC0524A898EE00FDC1B9 /* SwitchIt.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -406,10 +406,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "TedB.music-converter";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tedbennett.switch-it";
+				PRODUCT_NAME = SwitchIt;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -427,10 +427,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "TedB.music-converter";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tedbennett.switch-it";
+				PRODUCT_NAME = SwitchIt;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

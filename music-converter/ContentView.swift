@@ -42,7 +42,7 @@ struct ContentView: View {
                 if self.status == .InProgress {
                     ZStack {
                         SpinnerView()
-                        Image("icon").resizable().frame(width: 60, height: 50)
+                        Image("switchit-icon").resizable().frame(width: 60, height: 50)
                     }
                 }
                 if (self.status == .TargetAppleMusic || self.status == .TargetSpotify) && self.trackDataStatus != .BothInBackground {
