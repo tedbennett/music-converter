@@ -398,6 +398,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"music-converter/Preview Content\"";
 				DEVELOPMENT_TEAM = 9Y2AMH5S23;
 				ENABLE_PREVIEWS = YES;
@@ -419,6 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"music-converter/Preview Content\"";
 				DEVELOPMENT_TEAM = 9Y2AMH5S23;
 				ENABLE_PREVIEWS = YES;
