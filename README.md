@@ -1,3 +1,21 @@
-# music-converter
+# Switch-It
 
-This is a spin-off from music-manager just to help me polish this off before tackling larger parts of the app.
+An iOS app to convert song links between Spotify and Apple Music.
+
+This app is available for free on the App Store.
+
+## Description
+
+
+Simply copy a song link, open Switch-It, and the app will search the other music service's library to obtain a link to the song.
+
+This is a spin off from my music-manager app, to help me polish things off before dealing with larger issues with playlist transfers.
+
+This app uses PromiseKit, AlamoFire and Firebase. It consumes the Apple Music and Spotify API's.
+
+## To-Do
+
+* Rework Animations
+  * I found a bug in some transitions and animations not firing (opaque and slide combined) which required a messy work-around.
+* Give more information when a search or auth fails
+* Use Spotify/Apple Music players to play a snippet of the song
