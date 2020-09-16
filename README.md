@@ -2,7 +2,7 @@
 
 An iOS app to convert song links between Spotify and Apple Music.
 
-This app is available for free on the App Store.
+Given it's simple functionality, I don't think this will be able to be distributed on the App Store, but it will be part of my larger [music-manager](https://github.com/tedbennett/music-manager) app.
 
 ## Description
 
